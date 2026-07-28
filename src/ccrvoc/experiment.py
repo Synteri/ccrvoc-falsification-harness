@@ -81,6 +81,8 @@ def _factory(prototype: BasePolicy) -> Callable[[float], BasePolicy]:
         if isinstance(policy, CCRVOCPolicy):
             policy.beliefs = {}
             policy.processed_evidence = set()
+            policy.candidate_versions = {}
+            policy.repair_counts = {}
         return policy
 
     return build
@@ -110,6 +112,8 @@ def _run_tasks(
         if isinstance(policy, CCRVOCPolicy):
             policy.beliefs = {}
             policy.processed_evidence = set()
+            policy.candidate_versions = {}
+            policy.repair_counts = {}
         result = execute_policy(policy, env, seed)
         row = result.as_dict()
         if policy_name:

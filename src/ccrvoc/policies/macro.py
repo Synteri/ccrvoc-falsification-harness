@@ -10,7 +10,16 @@ from ccrvoc.types import Action, ActionType, EpisodeResult, PolicyView
 ARMS = {
     "generation_unit": ("generate", "unit_test", "independent_review"),
     "generation_review": ("generate", "independent_review"),
-    "context_tests": ("context", "generate", "unit_test", "integration_test", "independent_review"),
+    "context_tests": (
+        "context",
+        "generate",
+        "unit_test",
+        "integration_test",
+        "fuzz_security",
+        "independent_review",
+        "spec_review",
+        "adversarial_review",
+    ),
     "alternatives_review": ("generate", "alternative", "independent_review"),
     "test_heavy": (
         "generate",
@@ -91,6 +100,8 @@ class MacroPolicy(BasePolicy):
             if mode is None:
                 return Action(ActionType.INDEPENDENT_REVIEW, cid, "independent_review")
             return Action(ActionType.REPAIR, cid, agent="A2", target_mode=mode)
+        if token == "spec_review":
+            return Action(ActionType.INDEPENDENT_REVIEW, cid, "spec_review")
         return Action(ActionType(token), cid, token)
 
     def observe_audited(self, result: EpisodeResult, rho: float) -> None:

@@ -6,6 +6,7 @@ import numpy as np
 
 from ccrvoc.actions import candidate_actions
 from ccrvoc.belief import ParticleBelief, evidence_is_acceptance_eligible
+from ccrvoc.evidence import SENSITIVITY
 from ccrvoc.policies.base import BasePolicy
 from ccrvoc.types import Action, ActionType, PolicyView
 
@@ -27,6 +28,8 @@ class CCRVOCPolicy(BasePolicy):
         self.causal_model = causal_model
         self.beliefs: dict[int, ParticleBelief] = {}
         self.processed_evidence: set[int] = set()
+        self.candidate_versions: dict[int, int] = {}
+        self.repair_counts: dict[int, tuple[int, ...]] = {}
         self.depth = (
             1 if ablation == "h1" else 3 if ablation == "h3" else int(config["planning_depth"])
         )
@@ -47,6 +50,27 @@ class CCRVOCPolicy(BasePolicy):
                 self.beliefs[candidate.candidate_id] = ParticleBelief.initialize(
                     self.config, view.task.task_id * 101 + candidate.candidate_id, prior
                 )
+                self.candidate_versions[candidate.candidate_id] = candidate.version
+                self.repair_counts[candidate.candidate_id] = tuple(candidate.prior_repairs)
+            elif self.candidate_versions[candidate.candidate_id] != candidate.version:
+                belief = self.beliefs[candidate.candidate_id]
+                base_prior = np.full(
+                    5,
+                    np.clip(
+                        0.30 * np.exp(-0.8 * candidate.context_level),
+                        0.02,
+                        0.8,
+                    ),
+                )
+                repair_counts = np.asarray(candidate.prior_repairs)
+                repaired_prior = base_prior * np.power(0.5, repair_counts)
+                mutation_count = int(repair_counts.sum())
+                if mutation_count:
+                    regression_probability = 1 - np.power(1 - 0.03, mutation_count)
+                    repaired_prior += (1 - repaired_prior) * regression_probability
+                belief.reset_candidate_prior(np.clip(repaired_prior, 0.01, 0.99))
+                self.candidate_versions[candidate.candidate_id] = candidate.version
+                self.repair_counts[candidate.candidate_id] = tuple(candidate.prior_repairs)
         for evidence in view.evidence:
             if evidence.evidence_id in self.processed_evidence or evidence.stale:
                 continue
@@ -114,7 +138,29 @@ class CCRVOCPolicy(BasePolicy):
                 ActionType.SAME_FAMILY_ALTERNATIVE: 0.40,
                 ActionType.DIVERSE_ALTERNATIVE: 0.52,
             }[action.kind]
-            gain = view.task.value * quality * causal_factor
+            repetitions = view.action_counts.get(action.kind.value, 0)
+            repetition_factor = (
+                1.0
+                if self.ablation == "no_diminishing_returns"
+                else float(np.exp(-0.4 * repetitions))
+            )
+            if view.candidates:
+                current_correctness = max(
+                    1 - self.risk_score(view, candidate.candidate_id)
+                    for candidate in view.candidates
+                )
+                incremental_quality = max(quality - current_correctness, 0.0)
+                verification_continuation = 0.5
+            else:
+                incremental_quality = quality
+                verification_continuation = 1.0
+            gain = (
+                view.task.value
+                * incremental_quality
+                * verification_continuation
+                * causal_factor
+                * repetition_factor
+            )
         elif action.kind == ActionType.CONTEXT:
             gain = view.task.value * 0.10 * (1 - view.context_level) * causal_factor
         elif action.kind in {
@@ -138,7 +184,25 @@ class CCRVOCPolicy(BasePolicy):
                 ActionType.ADVERSARIAL_REVIEW: 0.40,
                 ActionType.REVIEWER_RERUN: 0.12,
             }[action.kind]
-            gain_by_member = view.task.value * info * current * causal_factor
+            if action.source in SENSITIVITY and action.candidate_id in self.beliefs:
+                mode_risk = self.beliefs[action.candidate_id].mode_probabilities()
+                normalized = float(
+                    np.dot(mode_risk, SENSITIVITY[action.source]) / max(mode_risk.sum(), 1e-12)
+                )
+                info = 0.10 + 0.45 * normalized
+            repetitions = sum(
+                1
+                for evidence in view.evidence
+                if not evidence.stale
+                and evidence.candidate_id == action.candidate_id
+                and evidence.source == action.source
+            )
+            repetition_factor = (
+                1.0
+                if self.ablation == "no_diminishing_returns"
+                else float(np.exp(-0.7 * repetitions))
+            )
+            gain_by_member = view.task.value * info * current * causal_factor * repetition_factor
             if self.depth > 1:
                 gain_by_member *= 1 + 0.20 * (self.depth - 1)
             return base + gain_by_member

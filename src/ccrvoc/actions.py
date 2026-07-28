@@ -27,6 +27,13 @@ def candidate_actions(view: PolicyView) -> list[Action]:
         )
         return actions
     c = view.candidates[-1]
+    current_evidence = [
+        evidence
+        for evidence in view.evidence
+        if not evidence.stale
+        and evidence.candidate_id == c.candidate_id
+        and evidence.candidate_version == c.version
+    ]
     actions.extend(
         [
             Action(ActionType.CONTEXT),
@@ -39,19 +46,25 @@ def candidate_actions(view: PolicyView) -> list[Action]:
                 "independent_review",
             ),
             Action(
+                ActionType.INDEPENDENT_REVIEW,
+                c.candidate_id,
+                "spec_review",
+            ),
+            Action(
                 ActionType.ADVERSARIAL_REVIEW,
                 c.candidate_id,
                 "adversarial_review",
             ),
-            Action(ActionType.SAME_FAMILY_ALTERNATIVE, agent="A1"),
-            Action(ActionType.DIVERSE_ALTERNATIVE, agent="A2"),
         ]
     )
-    flags = [
-        e.flags
-        for e in view.evidence
-        if not e.stale and e.candidate_id == c.candidate_id and e.candidate_version == c.version
-    ]
+    if len(current_evidence) >= 2 or any(evidence.flags.any() for evidence in current_evidence):
+        actions.extend(
+            [
+                Action(ActionType.SAME_FAMILY_ALTERNATIVE, agent="A1"),
+                Action(ActionType.DIVERSE_ALTERNATIVE, agent="A2"),
+            ]
+        )
+    flags = [evidence.flags for evidence in current_evidence]
     if flags:
         for mode in range(5):
             if any(bool(f[mode]) for f in flags):

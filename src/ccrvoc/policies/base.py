@@ -29,6 +29,10 @@ class BasePolicy(ABC):
         self.risk_threshold = float(threshold)
 
     def risk_score(self, view: PolicyView, candidate_id: int) -> float:
+        p = self.mode_probabilities(view, candidate_id)
+        return float(1 - np.prod(1 - p))
+
+    def mode_probabilities(self, view: PolicyView, candidate_id: int) -> np.ndarray:
         candidate = next(c for c in view.candidates if c.candidate_id == candidate_id)
         p = np.full(5, np.clip(0.30 * np.exp(-0.8 * candidate.context_level), 0.02, 0.8))
         seen: dict[str, int] = {}
@@ -51,7 +55,7 @@ class BasePolicy(ABC):
             odds *= np.power(likelihood_defect / likelihood_clean, discount)
             p = odds / (1 + odds)
             seen[source] = count + 1
-        return float(1 - np.prod(1 - p))
+        return p
 
     def safe_candidate(self, view: PolicyView) -> int | None:
         eligible: list[tuple[float, int]] = []
@@ -71,14 +75,18 @@ class BasePolicy(ABC):
 class ScheduledPolicy(BasePolicy):
     schedule: tuple[str, ...] = ()
 
+    def __init__(self, config: dict, risk_threshold: float = 0.05) -> None:
+        super().__init__(config, risk_threshold)
+        self._schedule_index = 0
+
     def choose_action(self, view: PolicyView) -> Action:
         safe = self.safe_candidate(view)
         if safe is not None:
             return Action(ActionType.ACCEPT, safe)
-        count = sum(view.action_counts.get(name, 0) for name in self.schedule)
-        if count >= len(self.schedule):
+        if self._schedule_index >= len(self.schedule):
             return Action(ActionType.DECLARE_FAILURE)
-        token = self.schedule[count]
+        token = self.schedule[self._schedule_index]
+        self._schedule_index += 1
         latest = view.candidates[-1].candidate_id if view.candidates else None
         if token == "context":
             return Action(ActionType.CONTEXT)
@@ -90,6 +98,8 @@ class ScheduledPolicy(BasePolicy):
             return Action(ActionType(token), latest, token)
         if token in {"independent_review", "adversarial_review"}:
             return Action(ActionType(token), latest, token)
+        if token == "spec_review":
+            return Action(ActionType.INDEPENDENT_REVIEW, latest, "spec_review")
         if token == "repair":
             mode = _flagged_mode(view, latest)
             if mode is None:
