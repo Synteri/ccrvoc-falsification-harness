@@ -1,0 +1,59 @@
+seed: 20260728
+mode: fast
+model_modes: [known_model, learned_model]
+particles: 300
+ensemble_members: 4
+planning_depth: 2
+epsilon_voc_fraction: 0.01
+rho: 1.0
+lambda_time: 0.0001
+risk_threshold_grid: [0.001, 0.002, 0.005, 0.01, 0.02, 0.03, 0.05, 0.075, 0.10, 0.15, 0.20]
+family_gamma:
+  exact_rerun: 0.85
+  same_family_changed_prompt: 0.60
+  different_model_same_suite: 0.40
+  independent_reviewer_family: 0.20
+  distinct_families: 0.10
+action_means:
+  primary_generation: {cost: 0.35, seconds: 30}
+  context: {cost: 0.08, seconds: 15}
+  unit_test: {cost: 0.06, seconds: 8}
+  integration_test: {cost: 0.12, seconds: 18}
+  fuzz_security: {cost: 0.25, seconds: 35}
+  same_family_alternative: {cost: 0.40, seconds: 35}
+  diverse_alternative: {cost: 0.55, seconds: 45}
+  debug: {cost: 0.25, seconds: 30}
+  independent_review: {cost: 0.20, seconds: 25}
+  adversarial_review: {cost: 0.35, seconds: 40}
+  reviewer_rerun: {cost: 0.18, seconds: 22}
+  repair: {cost: 0.20, seconds: 25}
+cost_cv: 0.15
+duration_cv: 0.25
+regimes:
+  balanced_default: {}
+  high_task_difficulty: {difficulty_shift: 0.7}
+  high_modeled_correlation: {gamma_multiplier: 1.35}
+  noisy_verifiers: {sensitivity_multiplier: 0.70, false_positive_multiplier: 1.7}
+  low_monetary_budgets: {budget_multiplier: 0.65}
+  tight_deadlines: {deadline_multiplier: 0.55}
+adversarial_regimes:
+  shared_specification_trap: {spec_trap_shift: 2.0}
+  hidden_reviewer_correlation: {true_reviewer_gamma: 0.95, model_gamma_cap: 0.50}
+  verifier_degradation: {post_calibration_sensitivity_multiplier: 0.60}
+  context_poisoning: {context_effect_sign: 1.0}
+  high_repair_regression: {regression_min: 0.15, regression_max: 0.30}
+  pareto_cost_duration: {pareto_shape: 1.5}
+  confidence_inversion: {confidence_inversion: true}
+  hidden_catastrophic_defect: {catastrophic_probability: 0.001}
+  missing_causal_overlap: {minimum_training_propensity: 0.0}
+  competence_drift: {competence_resample_period: 100}
+ablations:
+  - posterior_mean
+  - no_correlation
+  - no_evidence_invalidation
+  - h1
+  - h3
+  - no_diminishing_returns
+  - no_causal_adjustment
+  - uncalibrated_threshold
+

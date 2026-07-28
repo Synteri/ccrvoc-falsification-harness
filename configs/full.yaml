@@ -1,0 +1,13 @@
+extends: default.yaml
+mode: full
+particles: 2000
+ensemble_members: 16
+sizes:
+  training: 100000
+  validation: 30000
+  calibration: 50000
+  nominal_seeds: 20
+  nominal_tasks_per_seed: 2000
+  adversarial_seeds: 10
+  adversarial_tasks_per_seed: 2000
+
