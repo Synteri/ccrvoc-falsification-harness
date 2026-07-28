@@ -57,7 +57,7 @@ scheduler exists.
 For policy $\pi$, the main utility metric is verified useful work per dollar:
 
 $$
-\operatorname{VUD}(\pi) = \frac{\sum_i u_i\,\mathbf{1}[\text{accepted}_i \land \text{oracle-correct}_i]}{\sum_i \operatorname{cost}_i}
+\text{VUD}(\pi) = \frac{\sum_i u_i\,\mathbf{1}[\text{accepted}_i \land \text{oracle-correct}_i]}{\sum_i \text{cost}_i}
 $$
 
 The candidate policy must improve VUD while meeting false-acceptance risk
