@@ -1,0 +1,121 @@
+ablations:
+- posterior_mean
+- no_correlation
+- no_evidence_invalidation
+- h1
+- h3
+- no_diminishing_returns
+- no_causal_adjustment
+- uncalibrated_threshold
+action_means:
+  adversarial_review:
+    cost: 0.35
+    seconds: 40
+  context:
+    cost: 0.08
+    seconds: 15
+  debug:
+    cost: 0.25
+    seconds: 30
+  diverse_alternative:
+    cost: 0.55
+    seconds: 45
+  fuzz_security:
+    cost: 0.25
+    seconds: 35
+  independent_review:
+    cost: 0.2
+    seconds: 25
+  integration_test:
+    cost: 0.12
+    seconds: 18
+  primary_generation:
+    cost: 0.35
+    seconds: 30
+  repair:
+    cost: 0.2
+    seconds: 25
+  reviewer_rerun:
+    cost: 0.18
+    seconds: 22
+  same_family_alternative:
+    cost: 0.4
+    seconds: 35
+  unit_test:
+    cost: 0.06
+    seconds: 8
+adversarial_regimes:
+  competence_drift:
+    competence_resample_period: 100
+  confidence_inversion:
+    confidence_inversion: true
+  context_poisoning:
+    context_effect_sign: 1.0
+  hidden_catastrophic_defect:
+    catastrophic_probability: 0.001
+  hidden_reviewer_correlation:
+    model_gamma_cap: 0.5
+    true_reviewer_gamma: 0.95
+  high_repair_regression:
+    regression_max: 0.3
+    regression_min: 0.15
+  missing_causal_overlap:
+    minimum_training_propensity: 0.0
+  pareto_cost_duration:
+    pareto_shape: 1.5
+  shared_specification_trap:
+    spec_trap_shift: 2.0
+  verifier_degradation:
+    post_calibration_sensitivity_multiplier: 0.6
+cost_cv: 0.15
+duration_cv: 0.25
+ensemble_members: 4
+epsilon_voc_fraction: 0.01
+family_gamma:
+  different_model_same_suite: 0.4
+  distinct_families: 0.1
+  exact_rerun: 0.85
+  independent_reviewer_family: 0.2
+  same_family_changed_prompt: 0.6
+lambda_time: 0.0001
+mode: fast
+model_modes:
+- known_model
+- learned_model
+particles: 300
+planning_depth: 2
+regimes:
+  balanced_default: {}
+  high_modeled_correlation:
+    gamma_multiplier: 1.35
+  high_task_difficulty:
+    difficulty_shift: 0.7
+  low_monetary_budgets:
+    budget_multiplier: 0.65
+  noisy_verifiers:
+    false_positive_multiplier: 1.7
+    sensitivity_multiplier: 0.7
+  tight_deadlines:
+    deadline_multiplier: 0.55
+rho: 1.0
+risk_threshold_grid:
+- 0.001
+- 0.002
+- 0.005
+- 0.01
+- 0.02
+- 0.03
+- 0.05
+- 0.075
+- 0.1
+- 0.15
+- 0.2
+seed: 20260728
+sizes:
+  adversarial_seeds: 2
+  adversarial_tasks_per_seed: 500
+  calibration: 5000
+  nominal_seeds: 3
+  nominal_tasks_per_seed: 500
+  training: 10000
+  validation: 3000

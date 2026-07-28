@@ -1,0 +1,367 @@
+{
+  "estimator": "propensity-weighted logistic transition model",
+  "by_action": {
+    "adversarial_review": {
+      "n": 172.0,
+      "ess": 172.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "adversarial_review|ambiguous": {
+      "n": 31.0,
+      "ess": 31.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "adversarial_review|integration": {
+      "n": 50.0,
+      "ess": 50.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "adversarial_review|long_tail": {
+      "n": 11.0,
+      "ess": 11.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "adversarial_review|routine": {
+      "n": 55.0,
+      "ess": 55.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "adversarial_review|security": {
+      "n": 25.0,
+      "ess": 25.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "context": {
+      "n": 167.0,
+      "ess": 167.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "context|ambiguous": {
+      "n": 41.0,
+      "ess": 41.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "context|integration": {
+      "n": 42.0,
+      "ess": 42.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "context|long_tail": {
+      "n": 20.0,
+      "ess": 20.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "context|routine": {
+      "n": 45.0,
+      "ess": 45.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "context|security": {
+      "n": 19.0,
+      "ess": 19.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "debug": {
+      "n": 163.0,
+      "ess": 163.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "debug|ambiguous": {
+      "n": 24.0,
+      "ess": 24.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "debug|integration": {
+      "n": 32.0,
+      "ess": 32.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "debug|long_tail": {
+      "n": 22.0,
+      "ess": 22.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "debug|routine": {
+      "n": 53.0,
+      "ess": 53.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "debug|security": {
+      "n": 32.0,
+      "ess": 32.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "diverse_alternative": {
+      "n": 166.0,
+      "ess": 166.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "diverse_alternative|ambiguous": {
+      "n": 28.0,
+      "ess": 28.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "diverse_alternative|integration": {
+      "n": 34.0,
+      "ess": 34.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "diverse_alternative|long_tail": {
+      "n": 24.0,
+      "ess": 24.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "diverse_alternative|routine": {
+      "n": 44.0,
+      "ess": 44.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "diverse_alternative|security": {
+      "n": 36.0,
+      "ess": 36.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "fuzz_security": {
+      "n": 172.0,
+      "ess": 172.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "fuzz_security|ambiguous": {
+      "n": 34.0,
+      "ess": 34.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "fuzz_security|integration": {
+      "n": 33.0,
+      "ess": 33.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "fuzz_security|long_tail": {
+      "n": 29.0,
+      "ess": 29.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "fuzz_security|routine": {
+      "n": 50.0,
+      "ess": 50.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "fuzz_security|security": {
+      "n": 26.0,
+      "ess": 26.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "independent_review": {
+      "n": 169.0,
+      "ess": 169.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "independent_review|ambiguous": {
+      "n": 29.0,
+      "ess": 29.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "independent_review|integration": {
+      "n": 28.0,
+      "ess": 28.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "independent_review|long_tail": {
+      "n": 29.0,
+      "ess": 29.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "independent_review|routine": {
+      "n": 57.0,
+      "ess": 57.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "independent_review|security": {
+      "n": 26.0,
+      "ess": 26.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "integration_test": {
+      "n": 174.0,
+      "ess": 174.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "integration_test|ambiguous": {
+      "n": 50.0,
+      "ess": 50.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "integration_test|integration": {
+      "n": 30.0,
+      "ess": 30.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "integration_test|long_tail": {
+      "n": 23.0,
+      "ess": 23.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "integration_test|routine": {
+      "n": 43.0,
+      "ess": 43.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "integration_test|security": {
+      "n": 28.0,
+      "ess": 28.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "primary_generation": {
+      "n": 157.0,
+      "ess": 157.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "primary_generation|ambiguous": {
+      "n": 25.0,
+      "ess": 25.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "primary_generation|integration": {
+      "n": 36.0,
+      "ess": 36.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "primary_generation|long_tail": {
+      "n": 23.0,
+      "ess": 23.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "primary_generation|routine": {
+      "n": 45.0,
+      "ess": 45.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "primary_generation|security": {
+      "n": 28.0,
+      "ess": 28.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "repair": {
+      "n": 182.0,
+      "ess": 182.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "repair|ambiguous": {
+      "n": 36.0,
+      "ess": 36.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "repair|integration": {
+      "n": 34.0,
+      "ess": 34.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "repair|long_tail": {
+      "n": 23.0,
+      "ess": 23.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "repair|routine": {
+      "n": 64.0,
+      "ess": 64.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "repair|security": {
+      "n": 25.0,
+      "ess": 25.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "reviewer_rerun": {
+      "n": 164.0,
+      "ess": 164.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "reviewer_rerun|ambiguous": {
+      "n": 29.0,
+      "ess": 29.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "reviewer_rerun|integration": {
+      "n": 31.0,
+      "ess": 31.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "reviewer_rerun|long_tail": {
+      "n": 31.0,
+      "ess": 31.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "reviewer_rerun|routine": {
+      "n": 49.0,
+      "ess": 49.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "reviewer_rerun|security": {
+      "n": 24.0,
+      "ess": 24.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "same_family_alternative": {
+      "n": 170.0,
+      "ess": 170.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "same_family_alternative|ambiguous": {
+      "n": 45.0,
+      "ess": 45.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "same_family_alternative|integration": {
+      "n": 37.0,
+      "ess": 37.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "same_family_alternative|long_tail": {
+      "n": 24.0,
+      "ess": 24.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "same_family_alternative|routine": {
+      "n": 37.0,
+      "ess": 37.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "same_family_alternative|security": {
+      "n": 27.0,
+      "ess": 27.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "unit_test": {
+      "n": 144.0,
+      "ess": 144.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "unit_test|ambiguous": {
+      "n": 29.0,
+      "ess": 29.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "unit_test|integration": {
+      "n": 30.0,
+      "ess": 30.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "unit_test|long_tail": {
+      "n": 22.0,
+      "ess": 22.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "unit_test|routine": {
+      "n": 41.0,
+      "ess": 41.0,
+      "min_propensity": 0.08333333333333333
+    },
+    "unit_test|security": {
+      "n": 22.0,
+      "ess": 22.0,
+      "min_propensity": 0.08333333333333333
+    }
+  },
+  "minimum_propensity": 0.08333333333333333,
+  "violations": 0
+}

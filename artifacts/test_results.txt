@@ -1,0 +1,8 @@
+Executed before the experiment:
+
+- `UV_CACHE_DIR=/tmp/ccrvoc-uv-cache uv run pytest`
+  - `26 passed in 4.94s`
+- `UV_CACHE_DIR=/tmp/ccrvoc-uv-cache uv run ruff check .`
+  - `All checks passed!`
+- `UV_CACHE_DIR=/tmp/ccrvoc-uv-cache uv run mypy src`
+  - `Success: no issues found in 33 source files`

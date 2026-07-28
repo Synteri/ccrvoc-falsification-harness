@@ -1,0 +1,52 @@
+{
+  "mode": "fast",
+  "criteria": {
+    "1 pooled FAR upper bound <= 0.05": {
+      "pass": false,
+      "evidence": "upper=1.000000"
+    },
+    "2 weighted FAR upper bound <= 0.05": {
+      "pass": false,
+      "evidence": "point=0.000000, bootstrap_upper=1.000000"
+    },
+    "3 absolute FAR increase upper <= 0.005": {
+      "pass": false,
+      "evidence": "no baseline met final-test safety bound"
+    },
+    "5 VUD point improvement >= 10%": {
+      "pass": false,
+      "evidence": "no baseline met final-test safety bound"
+    },
+    "6 paired-bootstrap relative VUD lower > 3%": {
+      "pass": false,
+      "evidence": "no baseline met final-test safety bound"
+    },
+    "7 correct utility not >2% below baseline": {
+      "pass": false,
+      "evidence": "no baseline met final-test safety bound"
+    },
+    "4 no regime FAR upper bound > 0.10": {
+      "pass": false,
+      "evidence": "maximum=1.000000"
+    },
+    "8 pooled and at least four regimes": {
+      "pass": false,
+      "evidence": "regimes=0/6"
+    },
+    "9 budget violation exactly zero": {
+      "pass": true,
+      "evidence": "violations=0"
+    },
+    "10 no actions after terminal": {
+      "pass": true,
+      "evidence": "attempts=0"
+    },
+    "11 scheduler overhead <=10% cost": {
+      "pass": true,
+      "evidence": "assumption=$0.0001/s, fraction=0.000001"
+    }
+  },
+  "all_hard_risk": false,
+  "status": "PARTIAL",
+  "elapsed_seconds": 5254.525747537613
+}

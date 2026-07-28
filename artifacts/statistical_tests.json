@@ -1,0 +1,5 @@
+{
+  "strongest_safe_baseline": null,
+  "common_random_numbers": true,
+  "bootstrap_replicates": 2000
+}

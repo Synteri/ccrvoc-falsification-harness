@@ -1,0 +1,59 @@
+{
+  "authorized_for_larger_run": false,
+  "gates": {
+    "calibration_acceptance_support": {
+      "pass": false,
+      "required_per_policy": 100,
+      "selected_acceptances": {
+        "fixed_compute": 321,
+        "greedy_confidence": 104,
+        "ccr_voc_known": 0,
+        "ccr_voc_learned": 3
+      }
+    },
+    "safe_baseline_exists": {
+      "pass": false,
+      "safe_baselines": []
+    },
+    "nonzero_vud": {
+      "pass": false,
+      "vud": {
+        "ccr_voc_known": 0.0,
+        "ccr_voc_learned": 0.0,
+        "fixed_compute": 0.20206405839593905,
+        "greedy_confidence": 0.0940478841534571
+      }
+    },
+    "risk_calibration": {
+      "pass": false,
+      "selected_policy_calibrations": {
+        "fixed_compute": {
+          "threshold": 0.2,
+          "safe": false,
+          "confidence": 0.9875
+        },
+        "greedy_confidence": {
+          "threshold": 0.2,
+          "safe": false,
+          "confidence": 0.9875
+        },
+        "ccr_voc_known": {
+          "threshold": 0.05,
+          "safe": false,
+          "confidence": 0.9875
+        },
+        "ccr_voc_learned": {
+          "threshold": 0.2,
+          "safe": false,
+          "confidence": 0.9875
+        }
+      }
+    },
+    "budget_and_terminal_invariants": {
+      "pass": true,
+      "budget_violations": 0,
+      "post_terminal_attempts": 0
+    }
+  },
+  "status": "PARTIAL"
+}

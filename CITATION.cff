@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this simulator or its negative result, please cite this repository."
+title: "CCR-VOC: A Falsification Harness for Cost-Aware AI-Agent Scheduling"
+type: software
+authors:
+  - family-names: Schumacher
+    given-names: Jacob
+repository-code: "https://github.com/Synteri/ccrvoc-falsification-harness"
+url: "https://github.com/Synteri/ccrvoc-falsification-harness"
+version: 1.0.0
+date-released: 2026-07-28
+license: MIT
+abstract: >-
+  A reproducible synthetic simulation and falsification harness for testing
+  resource-bounded AI-agent scheduling policies under correlated failures,
+  noisy verification, costs, deadlines, and false-acceptance constraints.

@@ -4,6 +4,23 @@ version = "0.1.0"
 description = "Reproducible falsification harness for a CCR-VOC scheduling policy"
 readme = "README.md"
 requires-python = ">=3.12"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Jacob Schumacher" },
+]
+keywords = [
+  "ai-agents",
+  "sequential-decision-making",
+  "simulation",
+  "software-verification",
+  "reproducible-research",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering",
+]
 dependencies = [
   "numpy>=2.0",
   "scipy>=1.14",
@@ -13,6 +30,11 @@ dependencies = [
   "pyyaml>=6.0",
   "pyarrow>=17.0",
 ]
+
+[project.urls]
+Repository = "https://github.com/Synteri/ccrvoc-falsification-harness"
+Documentation = "https://github.com/Synteri/ccrvoc-falsification-harness#readme"
+Issues = "https://github.com/Synteri/ccrvoc-falsification-harness/issues"
 
 [project.optional-dependencies]
 dev = [
@@ -48,4 +70,3 @@ python_version = "3.12"
 ignore_missing_imports = true
 warn_unused_ignores = true
 check_untyped_defs = true
-

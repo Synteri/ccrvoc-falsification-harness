@@ -1,0 +1,17 @@
+policy,threshold,tasks,accepted,incorrect,far,far_upper_bonferroni,vud,safe,split
+fixed_compute,0.05,1500,0,0,0.0,1.0,0.0,False,calibration
+fixed_compute,0.1,1500,9,4,0.4444444444444444,0.8199871834162615,0.004192378123809054,False,calibration
+fixed_compute,0.15,1500,93,20,0.21505376344086022,0.3264283873012514,0.06457039428855083,False,calibration
+fixed_compute,0.2,1500,321,65,0.20249221183800623,0.2576702425239927,0.19047676276825282,False,calibration
+greedy_confidence,0.05,1500,0,0,0.0,1.0,0.0,False,calibration
+greedy_confidence,0.1,1500,0,0,0.0,1.0,0.0,False,calibration
+greedy_confidence,0.15,1500,46,6,0.13043478260869565,0.2821428887584837,0.043189928151472746,False,calibration
+greedy_confidence,0.2,1500,104,15,0.14423076923076922,0.238921605534201,0.08582070693025096,False,calibration
+ccr_voc_known,0.05,1500,0,0,0.0,1.0,0.0,False,calibration
+ccr_voc_known,0.1,1500,0,0,0.0,1.0,0.0,False,calibration
+ccr_voc_known,0.15,1500,0,0,0.0,1.0,0.0,False,calibration
+ccr_voc_known,0.2,1500,0,0,0.0,1.0,0.0,False,calibration
+ccr_voc_learned,0.05,1500,0,0,0.0,1.0,0.0,False,calibration
+ccr_voc_learned,0.1,1500,0,0,0.0,1.0,0.0,False,calibration
+ccr_voc_learned,0.15,1500,0,0,0.0,1.0,0.0,False,calibration
+ccr_voc_learned,0.2,1500,3,1,0.3333333333333333,0.9339810982694496,0.004384973101399638,False,calibration
